@@ -75,7 +75,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
         boolean additionsPending = !mPendingAdditions.isEmpty();
         if (!removalsPending && !movesPending && !additionsPending) {
             // nothing to animate
-            return;
+//            return;
         }
         // First, remove stuff
         for (RecyclerView.ViewHolder holder : mPendingRemovals) {
@@ -179,7 +179,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
         // TODO: make EndActions end listeners instead, since end actions aren't called when
         // vpas are canceled (and can't end them. why?)
         // need listener functionality in VPACompat for this. Ick.
-        ViewCompat.animate(view).setDuration(getMoveDuration()).setListener(new VpaListenerAdapter() {
+        ViewCompat.animate(view).setDuration(getMoveDuration()).setStartDelay(0).setListener(new VpaListenerAdapter() {
             @Override
             public void onAnimationCancel(View view) {
                 if (deltaX != 0) {

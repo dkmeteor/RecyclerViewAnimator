@@ -39,7 +39,7 @@ public class ListAdapterHolder extends RecyclerView.Adapter<ListAdapterHolder.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mContent.setText(mDatas.get(position).getContent());
+        holder.mContent.setText(mDatas.get(position).getContent()+" "+position);
         holder.mImage.setImageResource(mDatas.get(position).getAvatar());
 
     }
