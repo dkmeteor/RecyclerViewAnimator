@@ -18,7 +18,6 @@ package com.dk.animation.effect;
  * limitations under the License.
  */
 
-
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.RecyclerView;
@@ -27,10 +26,11 @@ import android.view.View;
 import java.util.ArrayList;
 
 /**
- * This implementation of {@link android.support.v7.widget.RecyclerView.ItemAnimator} provides basic
- * animations on remove, add, and move events that happen to the items in
- * a RecyclerView.
- *
+ * This implementation of
+ * {@link android.support.v7.widget.RecyclerView.ItemAnimator} provides basic
+ * animations on remove, add, and move events that happen to the items in a
+ * RecyclerView.
+ * 
  * @see android.support.v7.widget.RecyclerView#setItemAnimator(android.support.v7.widget.RecyclerView.ItemAnimator)
  */
 public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
@@ -40,7 +40,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
      */
     protected RecyclerView mRecyclerView;
 
-    public BaseItemAnimator(RecyclerView recyclerView){
+    public BaseItemAnimator(RecyclerView recyclerView) {
         mRecyclerView = recyclerView;
     }
 
@@ -75,7 +75,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
         boolean additionsPending = !mPendingAdditions.isEmpty();
         if (!removalsPending && !movesPending && !additionsPending) {
             // nothing to animate
-//            return;
+            return;
         }
         // First, remove stuff
         for (RecyclerView.ViewHolder holder : mPendingRemovals) {
@@ -90,8 +90,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
                 @Override
                 public void run() {
                     for (MoveInfo moveInfo : mMoves) {
-                        animateMoveImpl(moveInfo.holder, moveInfo.fromX, moveInfo.fromY,
-                                moveInfo.toX, moveInfo.toY);
+                        animateMoveImpl(moveInfo.holder, moveInfo.fromX, moveInfo.fromY, moveInfo.toX, moveInfo.toY);
                     }
                     mMoves.clear();
                 }
@@ -117,9 +116,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
             };
             if (removalsPending || movesPending) {
                 View view = mAdditions.get(0).itemView;
-                ViewCompat.postOnAnimationDelayed(view, adder,
-                        (removalsPending ? getRemoveDuration() : 0) +
-                                (movesPending ? getMoveDuration() : 0));
+                ViewCompat.postOnAnimationDelayed(view, adder, (removalsPending ? getRemoveDuration() : 0) + (movesPending ? getMoveDuration() : 0));
             } else {
                 adder.run();
             }
@@ -146,8 +143,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
     protected abstract void animateRemoveImpl(final RecyclerView.ViewHolder holder);
 
     @Override
-    public boolean animateMove(final RecyclerView.ViewHolder holder, int fromX, int fromY,
-                               int toX, int toY) {
+    public boolean animateMove(final RecyclerView.ViewHolder holder, int fromX, int fromY, int toX, int toY) {
         final View view = holder.itemView;
         int deltaX = toX - fromX;
         int deltaY = toY - fromY;
@@ -176,9 +172,15 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
         if (deltaY != 0) {
             ViewCompat.animate(view).translationY(0);
         }
-        // TODO: make EndActions end listeners instead, since end actions aren't called when
-        // vpas are canceled (and can't end them. why?)
-        // need listener functionality in VPACompat for this. Ick.
+
+        /**
+         * Dean Ding
+         * 
+         * if you called setStartDelay in animateAddImpl or
+         * animateRemoveImpl,you must reset it to 0 before animation
+         * 
+         */
+
         ViewCompat.animate(view).setDuration(getMoveDuration()).setStartDelay(0).setListener(new VpaListenerAdapter() {
             @Override
             public void onAnimationCancel(View view) {
@@ -189,6 +191,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
                     ViewCompat.setTranslationY(view, 0);
                 }
             }
+
             @Override
             public void onAnimationEnd(View view) {
                 dispatchMoveFinished(holder);
@@ -239,17 +242,13 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
 
     @Override
     public boolean isRunning() {
-        return (!mMoveAnimations.isEmpty() ||
-                !mRemoveAnimations.isEmpty() ||
-                !mAddAnimations.isEmpty() ||
-                !mMoves.isEmpty() ||
-                !mAdditions.isEmpty());
+        return (!mMoveAnimations.isEmpty() || !mRemoveAnimations.isEmpty() || !mAddAnimations.isEmpty() || !mMoves.isEmpty() || !mAdditions.isEmpty());
     }
 
     /**
-     * Check the state of currently pending and running animations. If there are none
-     * pending/running, call {@link #dispatchAnimationsFinished()} to notify any
-     * listeners.
+     * Check the state of currently pending and running animations. If there are
+     * none pending/running, call {@link #dispatchAnimationsFinished()} to
+     * notify any listeners.
      */
     protected void dispatchFinishedWhenDone() {
         if (!isRunning()) {
@@ -321,13 +320,15 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
 
     protected static class VpaListenerAdapter implements ViewPropertyAnimatorListener {
         @Override
-        public void onAnimationStart(View view) {}
+        public void onAnimationStart(View view) {
+        }
 
         @Override
-        public void onAnimationEnd(View view) {}
+        public void onAnimationEnd(View view) {
+        }
 
         @Override
-        public void onAnimationCancel(View view) {}
+        public void onAnimationCancel(View view) {
+        }
     };
 }
-
