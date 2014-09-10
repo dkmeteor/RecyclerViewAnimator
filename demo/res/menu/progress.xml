@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.dk.sample.MainActivity" >
+
+    <item
+        android:id="@+id/menu_load"
+        android:icon="@drawable/reload_02"
+        android:orderInCategory="200"
+        android:showAsAction="always"
+        android:title="Load"/>
+
+</menu>
