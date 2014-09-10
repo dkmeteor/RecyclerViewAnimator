@@ -35,15 +35,6 @@ import java.util.ArrayList;
  */
 public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
 
-    /**
-     * RecyclerView
-     */
-    protected RecyclerView mRecyclerView;
-
-    public BaseItemAnimator(RecyclerView recyclerView) {
-        mRecyclerView = recyclerView;
-    }
-
     private ArrayList<RecyclerView.ViewHolder> mPendingRemovals = new ArrayList<RecyclerView.ViewHolder>();
     private ArrayList<RecyclerView.ViewHolder> mPendingAdditions = new ArrayList<RecyclerView.ViewHolder>();
     private ArrayList<MoveInfo> mPendingMoves = new ArrayList<MoveInfo>();
@@ -51,9 +42,9 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
     private ArrayList<RecyclerView.ViewHolder> mAdditions = new ArrayList<RecyclerView.ViewHolder>();
     private ArrayList<MoveInfo> mMoves = new ArrayList<MoveInfo>();
 
-    protected ArrayList<RecyclerView.ViewHolder> mAddAnimations = new ArrayList<RecyclerView.ViewHolder>();
-    protected ArrayList<RecyclerView.ViewHolder> mMoveAnimations = new ArrayList<RecyclerView.ViewHolder>();
-    protected ArrayList<RecyclerView.ViewHolder> mRemoveAnimations = new ArrayList<RecyclerView.ViewHolder>();
+    public ArrayList<RecyclerView.ViewHolder> mAddAnimations = new ArrayList<RecyclerView.ViewHolder>();
+    public ArrayList<RecyclerView.ViewHolder> mMoveAnimations = new ArrayList<RecyclerView.ViewHolder>();
+    public ArrayList<RecyclerView.ViewHolder> mRemoveAnimations = new ArrayList<RecyclerView.ViewHolder>();
 
     private static class MoveInfo {
         public RecyclerView.ViewHolder holder;
@@ -177,7 +168,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
          * Dean Ding
          * 
          * if you called setStartDelay in animateAddImpl or
-         * animateRemoveImpl,you must reset it to 0 before animation
+         * animateRemoveImpl,you must reset it to 0 before move animation
          * 
          */
 
@@ -250,7 +241,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
      * none pending/running, call {@link #dispatchAnimationsFinished()} to
      * notify any listeners.
      */
-    protected void dispatchFinishedWhenDone() {
+    public void dispatchFinishedWhenDone() {
         if (!isRunning()) {
             dispatchAnimationsFinished();
         }
@@ -318,7 +309,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
         dispatchAnimationsFinished();
     }
 
-    protected static class VpaListenerAdapter implements ViewPropertyAnimatorListener {
+    public static class VpaListenerAdapter implements ViewPropertyAnimatorListener {
         @Override
         public void onAnimationStart(View view) {
         }
