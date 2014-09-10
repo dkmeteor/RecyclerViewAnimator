@@ -1,0 +1,19 @@
+.project
+.settings/
+bin/
+gen/
+build.xml
+local.properties
+proguard-project.txt
+.classpath
+
+out/
+.idea/
+
+# git
+*.orig
+
+# vim
+*.sw*
+*~
+
