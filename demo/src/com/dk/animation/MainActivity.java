@@ -63,7 +63,7 @@ public class MainActivity extends Activity {
             public void onPullDownToRefresh(PullToRefreshBase refreshView) {
 
                 mRecyclerView.onRefreshComplete();
-                for (int i = 0; i < 5; i++) {
+                for (int i = 0; i < 3; i++) {
                     addItem(0);
                 }
                 mRecyclerView.postDelayed(new Runnable() {
@@ -71,7 +71,7 @@ public class MainActivity extends Activity {
                     @Override
                     public void run() {
 
-                        adapter.notifyItemRangeInserted(0, 5);
+                        adapter.notifyItemRangeInserted(0, 3);
                         mRecyclerView.getRefreshableView().scrollToPosition(0);
 
                     }
