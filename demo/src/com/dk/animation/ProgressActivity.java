@@ -142,7 +142,7 @@ public class ProgressActivity extends Activity {
 
 		@Override
 		protected String doInBackground(String... params) {
-			// Simulate something long running
+			// do sth
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
