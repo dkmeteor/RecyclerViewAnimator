@@ -2,7 +2,9 @@ package com.dk.animation.effect;
 
 /*
  * This code is cloned from DefaultItemAnimator provided by support library v7-recyclerView
- *
+ * 
+ * But I modify several functions , and add several new function to fit my requirement.
+ * 
  * Copyright (C) 2014 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -68,6 +70,11 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
             // nothing to animate
             return;
         }
+
+        for (RecyclerView.ViewHolder holder : mPendingRemovals) {
+            prepareAnimateRemove(holder);
+        }
+
         // First, remove stuff
         for (RecyclerView.ViewHolder holder : mPendingRemovals) {
             animateRemoveImpl(holder);
@@ -122,6 +129,8 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
     }
 
     protected abstract void prepareAnimateAdd(final RecyclerView.ViewHolder holder);
+
+    protected abstract void prepareAnimateRemove(final RecyclerView.ViewHolder holder);
 
     protected abstract void animateAddImpl(final RecyclerView.ViewHolder holder);
 

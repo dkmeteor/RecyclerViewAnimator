@@ -18,10 +18,12 @@ import com.dk.animation.effect.ViewUtils;
 import com.dk.animation.effect.in.AlphaIn;
 import com.dk.animation.effect.in.ScaleIn;
 import com.dk.animation.effect.in.ShakeIn;
+import com.dk.animation.effect.in.StandUpIn;
 import com.dk.animation.effect.in.TransitionLeftIn;
 import com.dk.animation.effect.in.TransitionRightIn;
 import com.dk.animation.effect.out.AlphaOut;
 import com.dk.animation.effect.out.DropOut;
+import com.dk.animation.effect.out.FlipXOut;
 import com.dk.animation.effect.out.ScaleOut;
 import com.dk.animation.effect.out.TransitionLeftOut;
 import com.dk.animation.effect.out.TransitionRightOut;
@@ -31,7 +33,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshRecyclerView;
 
 public class MainActivity extends Activity {
     private PullToRefreshRecyclerView mRecyclerView;
-    private ListAdapterHolder adapter;
+    private ListAdapterHolder mAdapter;
     private ArrayList<UserData> mDatas = new ArrayList<UserData>();
     private static int[] mResId = new int[] { R.drawable.p1, R.drawable.p2, R.drawable.p3 };
     private BaseItemAnimator mAnimator;
@@ -44,13 +46,13 @@ public class MainActivity extends Activity {
         ViewUtils.init(this);
         mRecyclerView = (PullToRefreshRecyclerView) findViewById(R.id.recycler_view);
         createTestData();
-        adapter = new ListAdapterHolder(mDatas);
-        mRecyclerView.getRefreshableView().setAdapter(adapter);
+        mAdapter = new ListAdapterHolder(mDatas);
+        mRecyclerView.getRefreshableView().setAdapter(mAdapter);
         mRecyclerView.getRefreshableView().setHasFixedSize(true);
         mRecyclerView.getRefreshableView().setLayoutManager(new LinearLayoutManager(this));
-        mAnimator = new PackageAnimator(new TransitionLeftIn(), new DropOut());
+        mAnimator = new PackageAnimator(new StandUpIn().setAnimationDivider(200), new FlipXOut());
         mRecyclerView.getRefreshableView().setItemAnimator(mAnimator);
-        adapter.setOnItemClickListener(new OnItemClickListener() {
+        mAdapter.setOnItemClickListener(new OnItemClickListener() {
 
             @Override
             public void onItemClick(View view, int position) {
@@ -73,7 +75,7 @@ public class MainActivity extends Activity {
                     @Override
                     public void run() {
 
-                        adapter.notifyItemRangeInserted(0, 3);
+                        mAdapter.notifyItemRangeInserted(0, 3);
                         mRecyclerView.getRefreshableView().scrollToPosition(0);
 
                     }
@@ -85,15 +87,15 @@ public class MainActivity extends Activity {
             public void onPullUpToRefresh(PullToRefreshBase refreshView) {
                 mRecyclerView.onRefreshComplete();
                 for (int i = 0; i < 5; i++) {
-                    addItem(adapter.getItemCount() - 1);
+                    addItem(mAdapter.getItemCount() - 1);
                 }
 
                 mRecyclerView.postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
-                        adapter.notifyItemRangeInserted(adapter.getItemCount() - 5, 5);
-                        mRecyclerView.getRefreshableView().scrollToPosition(adapter.getItemCount() - 1);
+                        mAdapter.notifyItemRangeInserted(mAdapter.getItemCount() - 5, 5);
+                        mRecyclerView.getRefreshableView().scrollToPosition(mAdapter.getItemCount() - 1);
 
                     }
                 }, 200);
@@ -110,7 +112,7 @@ public class MainActivity extends Activity {
 
     private void removeItem(int position) {
         mDatas.remove(position);
-        adapter.notifyItemRemoved(position);
+        mAdapter.notifyItemRemoved(position);
     }
 
     private void createTestData() {
