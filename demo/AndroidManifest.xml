@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.dk.animation.MainActivity"
+            android:name="com.dk.animation.demo.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.dk.animation.ProgressActivity"
+            android:name="com.dk.animation.demo.ProgressActivity"
             android:label="@string/app_name" >
         </activity>
     </application>
