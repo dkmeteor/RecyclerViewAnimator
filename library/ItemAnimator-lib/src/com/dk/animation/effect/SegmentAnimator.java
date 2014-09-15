@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 
 public abstract class SegmentAnimator {
     protected long mDelayCount = 0;
-    protected long mDelay = 0;
+    protected long mDelay = 200;
 
     public abstract void animationPrepare(final RecyclerView.ViewHolder holder);
 

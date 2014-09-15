@@ -29,6 +29,8 @@ public class ProgressActivity extends Activity {
 			R.drawable.p3 };
 	private BaseItemAnimator mAnimator;
 	private View mRefreshIcon, mProgress;
+	private Badge mBadge;
+	private int count = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +39,7 @@ public class ProgressActivity extends Activity {
 		getActionBar().hide();
 		ViewUtils.init(this);
 		mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+		mBadge = (Badge) findViewById(R.id.badge);
 		createTestData();
 		adapter = new ListAdapterHolder(mDatas);
 		mRecyclerView.setAdapter(adapter);
@@ -57,6 +60,8 @@ public class ProgressActivity extends Activity {
 				mRecyclerView.setItemAnimator(mAnimator);
 
 				removeItem(position);
+				count++;
+				mBadge.setText(String.valueOf(count));
 			}
 		});
 		mRefreshIcon = findViewById(R.id.refresh);
@@ -66,6 +71,9 @@ public class ProgressActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
+
+				count = 0;
+				mBadge.setText("");
 
 				mAnimator = new PackageAnimator(new AnchorDropIn(
 						findViewById(R.id.trash)), new AnchorDropOut(

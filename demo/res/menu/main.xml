@@ -10,12 +10,19 @@
         android:id="@+id/action_shake"
         android:showAsAction="never"
         android:title="shake"/>
+    
+    
     <item
-        android:id="@+id/action_left_in"
+        android:id="@+id/action_stand_up"
+        android:showAsAction="never"
+        android:title="standup"/>
+    
+    <item
+        android:id="@+id/action_flip_horizon"
         android:showAsAction="never"
         android:title="flip_horizon"/>
     <item
-        android:id="@+id/action_right_in"
+        android:id="@+id/action_flip_vertial"
         android:showAsAction="never"
         android:title="flip_vertial"/>
     <item
