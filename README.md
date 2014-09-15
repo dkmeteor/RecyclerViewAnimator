@@ -2,13 +2,22 @@
 It is only a preview.
 The code is under heavy development.
 
+Bug满天飞，请勿用于生产环境。
 最近忙别的东西去了，修复bug，重构项目估计要推迟到十一期间，发出来主要是为了治治拖延症.
 
 
-# Demo
+#Demo
+### Item Animator Demo
+![Examples list](https://raw.githubusercontent.com/dkmeteor/RecyclerViewAnimator/master/gif/flip.gif)
 
-![Examples list](http://dk-exp.com/wp-content/uploads/2014/07/circle_list.gif)
+![Examples list](https://raw.githubusercontent.com/dkmeteor/RecyclerViewAnimator/master/gif/scale.gif)
 
+### Anchor Animator Demo
+
+![Examples list](https://raw.githubusercontent.com/dkmeteor/RecyclerViewAnimator/master/gif/anchor.gif)
+
+
+### Other:
 
 
 #How to use
@@ -18,6 +27,7 @@ Please look at my demo project.
 ## Pull-to-refresh
 
 I folked Android-PullToRefresh(https://github.com/chrisbanes/Android-PullToRefresh) and add an extention (PullToRefreshRecyclerView) to support RecyclerView.
+
 If you need Pull-to-refresh, you should use this one.
 
 You can get it from https://github.com/dkmeteor/Android-PullToRefresh-RecyclerView-Extention
