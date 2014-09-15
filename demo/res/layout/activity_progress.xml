@@ -45,17 +45,27 @@
         android:scaleType="centerInside"
         android:src="@drawable/default_ptr_rotate" />
 
-    <ImageView
-        android:id="@+id/trash"
+    <RelativeLayout
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="9dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/trash_recyclebin_empty_closed" >
-    </ImageView>
+        android:layout_marginTop="9dp" >
+
+        <ImageView
+            android:id="@+id/trash"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/trash_recyclebin_empty_closed" >
+        </ImageView>
+
+        <com.dk.animation.demo.Badge
+            android:id="@+id/badge"
+            android:layout_width="15dp"
+            android:layout_height="15dp" />
+    </RelativeLayout>
 
 </RelativeLayout>
