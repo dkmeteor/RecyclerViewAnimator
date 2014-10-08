@@ -12,6 +12,7 @@ import com.dk.animation.effect.SegmentAnimator;
 public class AlphaIn extends SegmentAnimator {
     @Override
     public void animationPrepare(final RecyclerView.ViewHolder holder) {
+        reset(holder.itemView);
         ViewCompat.setAlpha(holder.itemView, 0);
     }
 

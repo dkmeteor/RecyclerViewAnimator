@@ -14,6 +14,7 @@ import com.dk.animation.effect.ViewUtils;
 public class ShakeIn extends SegmentAnimator {
     @Override
     public void animationPrepare(final RecyclerView.ViewHolder holder) {
+        reset(holder.itemView);
         ViewCompat.setTranslationX(holder.itemView, -ViewUtils.getScreenWidth());
     }
 

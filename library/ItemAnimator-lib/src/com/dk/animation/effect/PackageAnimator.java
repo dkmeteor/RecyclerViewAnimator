@@ -1,15 +1,16 @@
 package com.dk.animation.effect;
 
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.ViewHolder;
 
 public class PackageAnimator extends BaseItemAnimator {
     private SegmentAnimator mInAnimator;
     private SegmentAnimator mOutAnimator;
-
     public PackageAnimator(SegmentAnimator in, SegmentAnimator out) {
         super();
         mInAnimator = in;
         mOutAnimator = out;
+        //set Default animation time
         setAddDuration(800);
         setMoveDuration(800);
         setRemoveDuration(800);

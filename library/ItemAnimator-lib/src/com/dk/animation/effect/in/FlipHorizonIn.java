@@ -14,6 +14,7 @@ public class FlipHorizonIn extends SegmentAnimator {
 
     @Override
     public void animationPrepare(ViewHolder holder) {
+        reset(holder.itemView);
         ViewCompat.setRotationY(holder.itemView, 90);
         ViewCompat.setAlpha(holder.itemView, 90);
     }

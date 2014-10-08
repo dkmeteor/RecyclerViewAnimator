@@ -1,6 +1,8 @@
 package com.dk.animation.effect;
 
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 
 public abstract class SegmentAnimator {
     protected long mDelayCount = 0;
@@ -30,5 +32,16 @@ public abstract class SegmentAnimator {
     public SegmentAnimator nextDelay() {
         mDelayCount++;
         return this;
+    }
+
+    public void reset(View view) {
+        ViewCompat.setRotationX(view, 0);
+        ViewCompat.setRotationY(view, 0);
+        ViewCompat.setTranslationX(view, 0);
+        ViewCompat.setTranslationY(view, 0);
+        ViewCompat.setScaleX(view, 1);
+        ViewCompat.setScaleY(view, 1);
+        ViewCompat.setAlpha(view, 1);
+        ViewCompat.setRotation(view, 0);
     }
 }

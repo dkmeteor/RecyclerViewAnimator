@@ -14,6 +14,7 @@ public class StandUpIn extends SegmentAnimator {
 
     @Override
     public void animationPrepare(ViewHolder holder) {
+        reset(holder.itemView);
 
         ViewCompat.setRotationX(holder.itemView, 90);
         System.out.println("animationPrepare");
@@ -22,7 +23,6 @@ public class StandUpIn extends SegmentAnimator {
     @Override
     public void startAnimation(final ViewHolder holder, long duration, final BaseItemAnimator animator) {
 
-        System.out.println("startAnimation");
         
         float x = (holder.itemView.getWidth() - holder.itemView.getPaddingLeft() - holder.itemView.getPaddingRight()) / 2 + holder.itemView.getPaddingLeft();
         float y = holder.itemView.getHeight() - holder.itemView.getPaddingBottom();
@@ -54,14 +54,17 @@ public class StandUpIn extends SegmentAnimator {
 
             @Override
             public void onAnimationCancel(Animator animation) {
-                // TODO Auto-generated method stub
-
+                reset(holder.itemView);
+                animator.dispatchAddFinished(holder);
+                animator.mAddAnimations.remove(holder);
+                animator.dispatchFinishedWhenDone();
             }
         });
         set.setStartDelay(mDelay * mDelayCount);
         set.setDuration(animator.getAddDuration());
         set.start();
 
+        System.out.println("mDelay:"+mDelayCount);
         animator.mAddAnimations.add(holder);
 
     }

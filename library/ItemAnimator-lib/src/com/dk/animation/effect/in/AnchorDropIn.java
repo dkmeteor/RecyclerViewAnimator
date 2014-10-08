@@ -23,6 +23,8 @@ public class AnchorDropIn extends SegmentAnimator {
 
 	@Override
 	public void animationPrepare(ViewHolder holder) {
+
+        reset(holder.itemView);
 		mDelayCount = 0;
 		int[] holderLocations = new int[2];
 

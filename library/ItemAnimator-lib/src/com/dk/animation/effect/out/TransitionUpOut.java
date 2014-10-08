@@ -13,7 +13,7 @@ public class TransitionUpOut extends SegmentAnimator {
 
     @Override
     public void animationPrepare(ViewHolder holder) {
-        ViewCompat.setTranslationY(holder.itemView, 0);
+        reset(holder.itemView);
     }
 
     @Override

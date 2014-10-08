@@ -17,8 +17,7 @@ public class TransitionRightOut extends SegmentAnimator {
 
     @Override
     public void animationPrepare(final RecyclerView.ViewHolder holder) {
-        ViewCompat.setTranslationX(holder.itemView, 0);
-        ViewCompat.setTranslationY(holder.itemView, 0);
+        reset(holder.itemView);
     }
 
     @Override

@@ -13,6 +13,7 @@ public class TransitionUpIn extends SegmentAnimator {
 
     @Override
     public void animationPrepare(ViewHolder holder) {
+        reset(holder.itemView);
         ViewCompat.setTranslationY(holder.itemView, ViewUtils.getScreenHeight());
     }
 

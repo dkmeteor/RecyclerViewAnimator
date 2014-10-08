@@ -8,8 +8,12 @@ import android.graphics.Bitmap.Config;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Rect;
+import android.os.Handler;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
+import android.view.MotionEvent;
 import android.view.View;
 
 public class ViewUtils {
@@ -116,4 +120,41 @@ public class ViewUtils {
         context.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
         return rect.top;
     }
+
+    public static void reset(View view) {
+        ViewCompat.setRotationX(view, 0);
+        ViewCompat.setRotationY(view, 0);
+        ViewCompat.setTranslationX(view, 0);
+        ViewCompat.setTranslationY(view, 0);
+        ViewCompat.setScaleX(view, 1);
+        ViewCompat.setScaleY(view, 1);
+        ViewCompat.setAlpha(view, 1);
+        ViewCompat.setRotation(view, 0);
+    }
+
+    /**
+     * When animation is running,scroll the RecyclerView will force stop the
+     * animation. This function will disable scroll for a while
+     * 
+     * @param view
+     */
+    public static void disableScroll(final RecyclerView view, long duration) {
+        view.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // TODO Auto-generated method stub
+                return true;
+            }
+        });
+        
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                view.setOnTouchListener(null);
+            }
+        }, duration);
+    }
+    
 }

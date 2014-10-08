@@ -14,6 +14,7 @@ public class FlipVertialIn extends SegmentAnimator {
 
     @Override
     public void animationPrepare(ViewHolder holder) {
+        reset(holder.itemView);
         ViewCompat.setRotationX(holder.itemView, 90);
         ViewCompat.setAlpha(holder.itemView, 90);
     }

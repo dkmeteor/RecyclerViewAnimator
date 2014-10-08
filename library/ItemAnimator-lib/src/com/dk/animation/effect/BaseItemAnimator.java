@@ -166,6 +166,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
         final int deltaX = toX - fromX;
         final int deltaY = toY - fromY;
         ViewCompat.animate(view).cancel();
+        // reset(view);
         if (deltaX != 0) {
             ViewCompat.animate(view).translationX(0);
         }
@@ -206,6 +207,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
     public void endAnimation(RecyclerView.ViewHolder item) {
         final View view = item.itemView;
         ViewCompat.animate(view).cancel();
+//        reset(view);
         if (mPendingMoves.contains(item)) {
             ViewCompat.setTranslationY(view, 0);
             ViewCompat.setTranslationX(view, 0);
@@ -263,6 +265,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
             MoveInfo item = mPendingMoves.get(i);
             View view = item.holder.itemView;
             ViewCompat.animate(view).cancel();
+            // reset(view);
             ViewCompat.setTranslationY(view, 0);
             ViewCompat.setTranslationX(view, 0);
             dispatchMoveFinished(item.holder);
@@ -290,6 +293,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
             RecyclerView.ViewHolder item = mMoveAnimations.get(i);
             View view = item.itemView;
             ViewCompat.animate(view).cancel();
+            // reset(view);
             ViewCompat.setTranslationY(view, 0);
             ViewCompat.setTranslationX(view, 0);
             dispatchMoveFinished(item);
@@ -300,6 +304,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
             RecyclerView.ViewHolder item = mRemoveAnimations.get(i);
             View view = item.itemView;
             ViewCompat.animate(view).cancel();
+            // reset(view);
             ViewCompat.setAlpha(view, 1);
             dispatchRemoveFinished(item);
             mRemoveAnimations.remove(item);
@@ -309,6 +314,7 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
             RecyclerView.ViewHolder item = mAddAnimations.get(i);
             View view = item.itemView;
             ViewCompat.animate(view).cancel();
+            // reset(view);
             ViewCompat.setAlpha(view, 1);
             dispatchAddFinished(item);
             mAddAnimations.remove(item);
@@ -331,4 +337,16 @@ public abstract class BaseItemAnimator extends RecyclerView.ItemAnimator {
         public void onAnimationCancel(View view) {
         }
     };
+
+    public void reset(View view) {
+
+        ViewCompat.setRotationX(view, 0);
+        ViewCompat.setRotationY(view, 0);
+        ViewCompat.setTranslationX(view, 0);
+        ViewCompat.setTranslationY(view, 0);
+        ViewCompat.setScaleX(view, 1);
+        ViewCompat.setScaleY(view, 1);
+        ViewCompat.setAlpha(view, 1);
+        ViewCompat.setRotation(view, 0);
+    }
 }

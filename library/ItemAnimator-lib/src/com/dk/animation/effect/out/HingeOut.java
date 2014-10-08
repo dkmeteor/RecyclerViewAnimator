@@ -38,7 +38,7 @@ import com.dk.animation.effect.SegmentAnimator;
 public class HingeOut extends SegmentAnimator {
     @Override
     public void animationPrepare(ViewHolder holder) {
-
+        reset(holder.itemView);
     }
 
     @Override

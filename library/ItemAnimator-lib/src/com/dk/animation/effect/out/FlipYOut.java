@@ -12,7 +12,7 @@ public class FlipYOut extends SegmentAnimator {
 
     @Override
     public void animationPrepare(ViewHolder holder) {
-
+        reset(holder.itemView);
     }
 
     @Override

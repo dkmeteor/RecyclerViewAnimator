@@ -15,6 +15,7 @@ import com.dk.animation.effect.ViewUtils;
 public class DropOut extends SegmentAnimator {
     @Override
     public void animationPrepare(final RecyclerView.ViewHolder holder) {
+        reset(holder.itemView);
     }
 
     @Override

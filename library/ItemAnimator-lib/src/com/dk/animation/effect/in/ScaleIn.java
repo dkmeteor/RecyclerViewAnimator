@@ -12,6 +12,7 @@ import com.dk.animation.effect.SegmentAnimator;
 public class ScaleIn extends SegmentAnimator {
     @Override
     public void animationPrepare(final RecyclerView.ViewHolder holder) {
+        reset(holder.itemView);
         ViewCompat.setScaleX(holder.itemView, 0);
         ViewCompat.setScaleY(holder.itemView, 0);
     }
