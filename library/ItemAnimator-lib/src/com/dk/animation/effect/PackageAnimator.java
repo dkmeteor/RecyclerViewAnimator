@@ -48,4 +48,11 @@ public class PackageAnimator extends BaseItemAnimator {
         }
     }
 
+	@Override
+	public boolean animateChange(ViewHolder arg0, ViewHolder arg1, int arg2,
+			int arg3, int arg4, int arg5) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

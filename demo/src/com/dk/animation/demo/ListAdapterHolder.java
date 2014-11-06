@@ -61,8 +61,8 @@ public class ListAdapterHolder extends RecyclerView.Adapter<ListAdapterHolder.Vi
         public ViewHolder(View view) {
             super(view);
             mImage = (ImageView) view.findViewById(R.id.list_image);
-            mContent = (TextView) view.findViewById(R.id.list_content);
             view.setOnClickListener(this);
+            mContent = (TextView) view.findViewById(R.id.list_content);
         }
 
         @Override
